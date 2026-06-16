@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: compass-quant-engine
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: QUANT_SHARED_SECRET
+        sync: false
